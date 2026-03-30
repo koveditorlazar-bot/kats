@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dear Katarina</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+
+    width: 100vw;
+    max-width: 100%;
+}
+
+
+
+#petal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    overflow: hidden;
+}
+
+
+
+.section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 20px;
+    z-index: 2; 
+}
+
+
+
+.hero {
+    min-height: 100%;
+
+    background-image: 
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.1) 0%,  
+            rgba(0, 0, 0, 0.4) 40%,  
+            rgba(0, 0, 0, 0.85) 75%,
+            rgba(0, 0, 0, 1) 100%   
+        ),
+        url("IMG-617548947fd2b97d5d45bd627403be57-V.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.hero img{
+    width: 200px;
+    position: absolute;
+    padding-top: 400px;
+    rotate: 2deg;
+    animation: fade 2s;
+}
+@keyframes fade {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.second {
+    background: linear-gradient(
+        180deg,
+        black,
+        #ff6fa8,
+        #ff3f7f
+    );
+}
+.third{
+
+    min-height: 600px;
+    text-align: center;
+    background: linear-gradient(
+        180deg,
+        #ff3f7f,
+        black
+    );
+}
+.third, p{
+        font-family: 'Segoe UI', sans-serif;
+    color: white;
+    font-size: 60px;
+    font-weight: bolder;
+text-shadow: black,30px,black;
+}
+.third, div{
+           font-family: 'Segoe UI', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 60px;
+    font-weight: bolder;
+    
+}
+
+
+h1 {
+    font-size: 14vw;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+
+
+#typewriter {
+    font-size: 9vw;
+    color: white;
+    font-weight: bold;
+    max-width: 90%;
+    line-height: 1.2;
+    text-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+
+
+.petal {
+    position: absolute;
+    top: -60px;
+    animation: fall linear forwards;
+    opacity: 0.9;
+}#emoji-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 4;
+    overflow: hidden;
+}
+
+.emoji {
+    position: absolute;
+    font-size: 30px;
+    animation: burst 2s ease-out forwards;
+}
+
+@keyframes burst {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: 
+            translate(var(--x), var(--y))
+            scale(1.5)
+            rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fall {
+
+    0% {
+        transform: translateY(-60px) translateX(0px) rotate(0deg);
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            translateX(80px)
+            rotate(360deg);
+    }
+}
+
+#entry-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+    transition: opacity 1s ease;
+}
+
+.overlay-content h1 {
+    font-size: 5vw;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+#start-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+}
+
+
+.handwriting text {
+    font-size: 200px;
+    fill: transparent; 
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+
+    stroke-dasharray: 1800;
+    stroke-dashoffset: 1800;
+
+    animation: write 7s ease forwards;
+}
+.second{
+    height: 800px;
+}
+
+
+@keyframes write {
+    0% {
+        stroke-dashoffset: 1800;
+        fill: transparent;
+    }
+
+    90% {
+        stroke-dashoffset: 0;
+       fill: white;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        fill: white; 
+    }
+
+}
+.generic-section {
+    width: 100%;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #000000; 
+    color: white; 
+}
+
+.generic-section .text-container {
+    max-width: 800px;
+    margin-bottom: 40px;
+}
+
+.generic-section .text-container h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.generic-section .text-container p {
+    font-size: 1.5rem; 
+    line-height: 1.6;
+}
+
+.generic-section .image-container {
+    max-width: 900px;
+    width: 100%;
+}
+
+
+.generic-section .image-container img {
+    width: 100%;
+    rotate: 2deg;
+    height: auto;
+    border-radius: 12px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+}
+.handwriting {
+    width: 95%;
+    max-width: 1400px;
+}
+#totheright{
+    rotate: -2deg;
+}
+.slideshow-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: visible;
+    z-index: 2;
+    margin-bottom: 50px; 
+}
+
+  .slide {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    
+    
+   
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4); 
+  }
+ .last-section {
+    position: relative;
+    min-height: 100vh; 
+    background-image: url("IMG-b08676912fc0af2f8b43c7e5b6d2a73a-V.jpg"); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px; 
+    
+    
+    overflow: hidden; 
+}
+
+.last-section::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4); 
+    z-index: 1;
+}
+
+.overlay-text {
+    
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    margin-bottom: 50px; 
+}
+.overlay-text p {
+    font-size: 35px;
+}
+#pre-wish-btn {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 10;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.6);
+    transition: transform 0.3s;
+}
+
+
+#wish-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    display: none; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+.cake {
+    font-size: 120px;
+    position: relative;
+}
+
+
+.candle-glow {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255,165,0,0.4) 0%, transparent 70%);
+    top: 40%;
+    animation: flicker 0.1s infinite alternate;
+}
+
+@keyframes flicker {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.1); opacity: 1; }
+}
+
+#final-wish-btn {
+    margin-top: 40px;
+    background: none;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cousin-text {
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    animation: fadeIn 2s ease;
+}
+
+#final-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+#blackout {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    z-index: 10001;
+    display: none;
+    opacity: 0;
+    transition: opacity 3s ease;
+}
+</style>
+</head>
+
+<body>
+<div id="entry-overlay">
+    <div class="overlay-content">
+        <h1>For Katarina</h1>
+        <button id="start-btn">Open ❤️</button>
+    </div>
+</div>
+
+<audio id="bg-music" loop>
+  <source src="Happy Piano Music 3 Minutes, Piano Music for Good Memories, Beautiful Piano Music, Peaceful Music.mp3" type="audio/mpeg">
+</audio>
+<div id="petal-container"></div>
+
+<section class="section hero">
+    <svg viewBox="0 0 1200 200" class="handwriting">
+        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+            Dear Katarina
+        </text>
+    </svg>
+
+</section>
+
+<section class="section second">
+    <div id="typewriter"></div>
+</section>
+<section class="third">
+    <h1>Even though we are</h1><br>
+<p id="distance">15000km</p><br>
+    <div>apart, I have never felt closer to you.</div>
+    <div id="emoji-container"></div>
+</section>
+<section class="generic-section">
+  <div class="text-container">
+    <h2>I wish I could be there to celebrate this special day with you</h2>
+
+  </div>
+  <div class="image-container">
+    <img src="KatsPolaroid.png" alt="Description of image">
+  </div>
+</section>
+
+<section class="generic-section">
+  <div class="text-container">
+    <h2>but since I can’t,</h2>
+
+  </div>
+  <div class="image-container">
+    <img id="totheright" src="IMG-aa72bfd7c4bfd07d5e40ac274228c540-V.jpg" alt="Description of image">
+  </div>
+</section>
+<section class="generic-section">
+  <div class="text-container">
+    <h2>I’m sending all my love your way!</h2>
+
+  </div>
+  <div class="image-container">
+    <img  src="20250620_203419.jpg" alt="Description of image">
+  </div>
+</section>
+<section class="last-section section">
+  <div class="overlay-text">
+    
+    <p>Katarina, I’m wishing you the absolute best. I hope every single one of your dreams comes true, and please... always remember that you are enough. Exactly as you are.❤️</p>
+  </div>
+  <div class="slideshow-container">
+    <img src="IMG-7821aa98e9f7c9f05b2bb54861970b0c-V.jpg" class="slide">
+    <img src="20250719_193040(0).jpg" class="slide">
+    <img src="IMG-f3e4b47e41ff1e61e5a1083016833efe-V.jpg" class="slide">
+    <img src="IMG-2198b45fb04c0ac96450544a1f351509-V.jpg" class="slide">
+    <img src="IMG-d23d527d526364c23865fb20f8b59b88-V.jpg" class="slide">
+  </div>
+
+  <button id="pre-wish-btn" onclick="showCake()">Let's make a wish!</button>
+
+<div id="wish-overlay">
+    <div class="cake-container" style="text-align: center;">
+        <h2 class="cousin-text">To the best cousin in the world</h2>
+        
+        <div class="cake">🎂</div>
+        <div id="candle-glow"></div>
+        
+        <button id="final-wish-btn" onclick="extinguish()">Make a wish</button>
+    </div>
+</div>
+
+<audio id="bg-music" loop>
+  <source src="Happy Piano Music 3 Minutes, Piano Music for Good Memories, Beautiful Piano Music, Peaceful Music.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="celebration-music">
+  <source src="Happy Birthday (Fingerstyle) by Mr.Lee.mp3" type="audio/mpeg">
+</audio>
+
+<div id="blackout">
+    <h1 id="final-message">Happy Birthday, Katarina! <br><font size="20px" >Love your cousin Lazar :)</font></h1>
+   
+</div>
+
+<div id="blackout"></div>
+</section>
+
+
+<script>
+function showCake() {
+    const overlay = document.getElementById('wish-overlay');
+    overlay.style.display = 'flex';
+   
+    setTimeout(() => {
+        overlay.style.opacity = '1';
+    }, 10);
+}
+
+function extinguish() {
+    const blackout = document.getElementById('blackout');
+    blackout.style.display = 'block';
+    
+
+    setTimeout(() => {
+        blackout.style.opacity = '1';
+        
+       
+        setTimeout(() => {
+            if(typeof music !== 'undefined') music.pause();
+        }, 2000);
+    }, 10);
+}
+function extinguish() {
+    const music1 = document.getElementById("bg-music");
+    const music2 = document.getElementById("celebration-music");
+    const blackout = document.getElementById('blackout');
+    const finalMsg = document.getElementById('final-message');
+
+
+    music1.pause();
+    music1.currentTime = 0;
+
+  
+    music2.play();
+
+   
+    blackout.style.display = 'block';
+    
+    setTimeout(() => {
+        blackout.style.opacity = '1';
+        
+       
+
+        setTimeout(() => {
+            finalMsg.style.opacity = '1';
+        }, 2000);
+    }, 10);
+}
+
+const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let angle = 0;
+
+  function rotateSlides() {
+    slides.forEach((slide, i) => {
+      const slideAngle = (360 / total) * i + angle;
+      
+     
+      slide.style.transform = `translate(-50%, -50%) rotate(${slideAngle}deg) translateX(130px) rotate(-${slideAngle}deg)`;
+    });
+    
+    angle += 0.5;
+    requestAnimationFrame(rotateSlides);
+  }
+
+  rotateSlides();
+
+let petalInterval;
+
+function createPetal() {
+
+    const petal =
+        document.createElement("div");
+
+    petal.classList.add("petal");
+
+    petal.style.left =
+        Math.random() * window.innerWidth + "px";
+
+    petal.style.animationDuration =
+        7 + Math.random() * 5 + "s";
+
+    petal.style.transform =
+        `scale(${0.6 + Math.random() * 0.6})`;
+
+    petal.innerHTML = `
+<svg width="24" height="32" viewBox="0 0 24 32">
+<path
+d="M12 0
+C20 6 24 14 12 32
+C0 14 4 6 12 0Z"
+fill="#ff4d6d"/>
+</svg>
+`;
+
+    document
+        .getElementById("petal-container")
+        .appendChild(petal);
+
+    setTimeout(() => {
+
+        petal.remove();
+
+    }, 13000);
+}
+
+
+petalInterval =
+setInterval(createPetal, 350);
+
+
+
+const text =
+"Happy 27th Birthday";
+
+let index = 0;
+
+let started = false;
+
+function typeWriter() {
+
+    if (index < text.length) {
+
+        document.getElementById(
+            "typewriter"
+        ).innerHTML +=
+            text.charAt(index);
+
+        index++;
+
+        setTimeout(typeWriter, 80);
+    }
+}
+
+function createEmojiBurst() {
+    const container = document.getElementById("emoji-container");
+
+    for (let i = 0; i < 25; i++) {
+        setTimeout(() => {
+            const emoji = document.createElement("div");
+            emoji.classList.add("emoji");
+
+            emoji.innerText = "😭";
+
+            const rect = document.getElementById("distance").getBoundingClientRect();
+
+            emoji.style.left = rect.left + rect.width / 2 + "px";
+            emoji.style.top = rect.top + rect.height / 2 + "px";
+
+         
+            const x = (Math.random() - 0.5) * 600 + "px";
+            const y = (Math.random() - 0.5) * 600 + "px";
+
+            emoji.style.setProperty("--x", x);
+            emoji.style.setProperty("--y", y);
+
+            container.appendChild(emoji);
+
+            setTimeout(() => emoji.remove(), 2000);
+        }, i * 100); 
+    }
+}let emojiTriggered = false;
+
+const textObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting && !emojiTriggered) {
+
+            emojiTriggered = true;
+
+            createEmojiBurst();
+        }
+    });
+
+}, { threshold: 0.8 });
+
+textObserver.observe(document.getElementById("distance"));
+
+const observer =
+new IntersectionObserver(
+
+(entries) => {
+
+    entries.forEach(entry => {
+
+        if (
+            entry.isIntersecting &&
+            !started
+        ) {
+
+            started = true;
+
+
+            clearInterval(
+                petalInterval
+            );
+
+          
+
+            typeWriter();
+        }
+    });
+
+},
+
+{
+    threshold: 0.6
+});
+
+observer.observe(
+    document.querySelector(".second")
+);
+const overlay = document.getElementById('entry-overlay');
+const startBtn = document.getElementById('start-btn');
+const music = document.getElementById('bg-music');
+
+startBtn.addEventListener('click', () => {
+   
+    music.play();
+    
+
+    overlay.style.opacity = '0';
+    
+   
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 1000);
+});
+</script>
+
+
+
+</body>
+</html>
